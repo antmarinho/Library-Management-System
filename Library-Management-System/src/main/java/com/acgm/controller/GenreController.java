@@ -1,6 +1,6 @@
 package com.acgm.controller;
 
-import com.acgm.model.Genre;
+import com.acgm.payload.dto.GenreDTO;
 import com.acgm.service.GenreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,11 +17,12 @@ public class GenreController {
     private GenreService genreService;
 
     @PostMapping("/create")
-    public ResponseEntity<Genre> addGenre(@RequestBody Genre genre) {
+    public ResponseEntity<GenreDTO> addGenre(@RequestBody GenreDTO genreDTO) {
 
-        Genre createdGenre = genreService.createGenre(genre);
+        GenreDTO createdGenre = genreService.createGenre(genreDTO);
 
         return ResponseEntity.ok(createdGenre);
+
     }
 
 }

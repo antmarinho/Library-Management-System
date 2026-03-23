@@ -1,9 +1,9 @@
 package com.acgm.service;
 
-import com.acgm.model.Genre;
+import com.acgm.payload.dto.GenreDTO;
 
 public interface GenreService {
 
-    Genre createGenre(Genre genre);
+    GenreDTO createGenre(GenreDTO genre);
 
 }

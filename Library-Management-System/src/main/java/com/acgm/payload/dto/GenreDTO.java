@@ -1,22 +1,14 @@
-package com.acgm.model;
+package com.acgm.payload.dto;
 
-import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
+public class GenreDTO {
 
-@Entity
-public class Genre {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @NotBlank(message = "codigo do genero e obrigatorio")
@@ -31,36 +23,36 @@ public class Genre {
     @Min(value = 0, message = "display nao pode ser negativo")
     private Integer displayOrder = 0;
 
-    @Column(nullable = false)
-    private Boolean active = true;
+    private Boolean active;
 
-    @ManyToOne
-    private Genre parentGenere;
+    private Long parentGenreId;
 
-    @OneToMany
-    private List<Genre> subGenres = new ArrayList<>();
+    private String parentGenreName;
 
-    //@OneToMany(mappedBy = "genre", cascade = CascadeType.PERSIST)
-    //private List<Book> books = new ArrayList<>();
+    private List<GenreDTO> subGenre;
 
-    @CreationTimestamp
+    private Long bookCount;
+
     private LocalDateTime createdAt;
 
-    @UpdateTimestamp
-    private LocalDateTime updateAt;
+    private LocalDateTime updatedAt;
 
-    public Genre() {}
+    public GenreDTO() {}
 
-    public Genre(Long id, String code, String name, String description, Integer displayOrder, Boolean active, Genre parentGenere, List<Genre> subGenres) {
+    public GenreDTO(LocalDateTime updatedAt, LocalDateTime createdAt, Long bookCount, List<GenreDTO> subGenre, String parentGenreName, Long parentGenreId, Boolean active, Integer displayOrder, String description, String name, String code, Long id) {
 
-        this.id = id;
-        this.code = code;
-        this.name = name;
-        this.description = description;
-        this.displayOrder = displayOrder;
+        this.updatedAt = updatedAt;
+        this.createdAt = createdAt;
+        this.bookCount = bookCount;
+        this.subGenre = subGenre;
+        this.parentGenreName = parentGenreName;
+        this.parentGenreId = parentGenreId;
         this.active = active;
-        this.parentGenere = parentGenere;
-        this.subGenres = subGenres;
+        this.displayOrder = displayOrder;
+        this.description = description;
+        this.name = name;
+        this.code = code;
+        this.id = id;
 
     }
 
@@ -112,20 +104,36 @@ public class Genre {
         this.active = active;
     }
 
-    public Genre getParentGenere() {
-        return parentGenere;
+    public Long getParentGenreId() {
+        return parentGenreId;
     }
 
-    public void setParentGenere(Genre parentGenere) {
-        this.parentGenere = parentGenere;
+    public void setParentGenreId(Long parentGenreId) {
+        this.parentGenreId = parentGenreId;
     }
 
-    public List<Genre> getSubGenres() {
-        return subGenres;
+    public String getParentGenreName() {
+        return parentGenreName;
     }
 
-    public void setSubGenres(List<Genre> subGenres) {
-        this.subGenres = subGenres;
+    public void setParentGenreName(String parentGenreName) {
+        this.parentGenreName = parentGenreName;
+    }
+
+    public List<GenreDTO> getSubGenre() {
+        return subGenre;
+    }
+
+    public void setSubGenre(List<GenreDTO> subGenre) {
+        this.subGenre = subGenre;
+    }
+
+    public Long getBookCount() {
+        return bookCount;
+    }
+
+    public void setBookCount(Long bookCount) {
+        this.bookCount = bookCount;
     }
 
     public LocalDateTime getCreatedAt() {
@@ -136,12 +144,12 @@ public class Genre {
         this.createdAt = createdAt;
     }
 
-    public LocalDateTime getUpdateAt() {
-        return updateAt;
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
     }
 
-    public void setUpdateAt(LocalDateTime updateAt) {
-        this.updateAt = updateAt;
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
 }
