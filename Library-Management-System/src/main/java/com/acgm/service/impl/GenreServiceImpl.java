@@ -6,9 +6,9 @@ import com.acgm.payload.dto.GenreDTO;
 import com.acgm.repository.GenreRepository;
 import com.acgm.service.GenreService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -39,6 +39,51 @@ public class GenreServiceImpl implements GenreService {
                 .map(genreMapper::toDTO)
                 .collect(Collectors.toList());
 
+    }
+
+    @Override
+    public GenreDTO getGenreById(Long genreId) {
+        return null;
+    }
+
+    @Override
+    public GenreDTO updateGenre(Long genreId, GenreDTO genre) {
+        return null;
+    }
+
+    @Override
+    public void deleteGenre(Long genreId) {
+
+    }
+
+    @Override
+    public void hardDeleteGenre(Long genreId) {
+
+    }
+
+    @Override
+    public List<GenreDTO> getAllActiveGenresWithSubGeneres() {
+        return List.of();
+    }
+
+    @Override
+    public List<GenreDTO> getTopLevelGenres() {
+        return List.of();
+    }
+
+    @Override
+    public Page<GenreDTO> searchGenres(String searchTerm, Pageable pageable) {
+        return null;
+    }
+
+    @Override
+    public long getTotalActiveGenres() {
+        return 0;
+    }
+
+    @Override
+    public long getBookCountByGenreId(Long genreId) {
+        return 0;
     }
 
 }
